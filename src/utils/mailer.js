@@ -1,17 +1,13 @@
 const nodemailer = require('nodemailer')
 
 class Mailer {
-  constructor () {}
-
   /**
    *
-   * @param {*} subject
-   * @param {*} body
-   * @param {*} config
+   * @param {Object} config
    *
    * Sends email messages via nodemailer
    */
-  static async sendMail (subject, body, config) {
+  static async sendMail (config) {
     // Create a transport object
     const transporter = nodemailer.createTransport({
       host: config.host,
@@ -23,13 +19,15 @@ class Mailer {
       }
     })
 
+    // Set the mail options
     const mailOptions = {
       from: config.from,
       to: config.to,
-      subject: subject,
-      html: body
+      subject: config.subject,
+      html: config.body
     }
 
+    // Send the actual mail
     return await transporter.sendMail(mailOptions)
   }
 }
