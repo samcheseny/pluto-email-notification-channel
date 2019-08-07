@@ -1,9 +1,9 @@
 class Mailer {
   constructor () {}
 
-  static async sendMail (subject, html) {
+  static async sendMail (config) {
     // Simulate a promise rejection
-    if (!html) {
+    if (config.user === '') {
       throw new Error('Unable to send an email')
     }
 

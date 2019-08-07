@@ -5,6 +5,10 @@ class Utilities {
   /**
    *
    * @param {Object} loggedMessage
+   *
+   * Fetches an email template and prepares it
+   * by replacing the {{}} patterns with values
+   *
    */
   static getFormattedHtmlEmailBody (loggedMessage) {
     try {

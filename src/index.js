@@ -19,8 +19,8 @@ class Channel {
     this.validateLogObject(loggedMessageObject)
 
     let subject = `${loggedMessageObject.severity.toUpperCase()} 
-    : ${loggedMessageObject.serverName} 
-    - ${loggedMessageObject.timestamp}`
+                 : ${loggedMessageObject.serverName} 
+                 - ${loggedMessageObject.timestamp}`
 
     let config = {
       host: process.env.MAIL_HOST,
@@ -59,7 +59,7 @@ class Channel {
       }
 
       // Check if any variable is empty
-      if (process.env[property] === '') {
+      if (process.env[property].trim() === '') {
         throw new Error(
           `${property} does not have a value in the environment variables`
         )
@@ -82,7 +82,7 @@ class Channel {
       }
 
       // Check if any variable is empty
-      if (logObject[property] === '') {
+      if (logObject[property].trim() === '') {
         throw new Error(
           `${property} does not have a value in the received log object`
         )
