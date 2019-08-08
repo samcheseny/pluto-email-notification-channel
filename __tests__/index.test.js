@@ -44,7 +44,7 @@ describe('Channel', () => {
   test('should not send an email on invalid auth details', () => {
     expect.assertions(1)
 
-    process.env.MAIL_USER = 'notanemail@gmail.com'
+    process.env.MAIL_USER = TestUtilities.INVALID_EMAIL
 
     return Channel.notify(log).then(data => expect(data.notified).toBeFalsy())
   })

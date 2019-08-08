@@ -1,9 +1,9 @@
 process.env.NODE_ENV = 'test'
-
-jest.mock('nodemailer')
 const Mailer = require('../src/utils/mailer')
 const TestUtilities = require('./utils')
 let config = {}
+
+jest.mock('nodemailer')
 
 describe('Mailer', () => {
   // To be run before each test
@@ -33,7 +33,7 @@ describe('Mailer', () => {
     })
 
     test('should return a promise that rejects with an Error object', async () => {
-      config.from = 'notanemail@gmail.com'
+      config.from = TestUtilities.INVALID_EMAIL
 
       await expect(Mailer.sendMail(config)).rejects.toThrow()
     })

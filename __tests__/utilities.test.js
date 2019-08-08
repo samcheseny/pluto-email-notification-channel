@@ -1,6 +1,5 @@
 process.env.NODE_ENV = 'test'
 
-jest.mock('nodemailer')
 const Utilities = require('../src/utils/utilities')
 const { LOG_TEMPLATE_PATTERNS } = require('../src/configs')
 const log = {

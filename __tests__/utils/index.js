@@ -1,3 +1,4 @@
+// Reads env variables off a file and return an object
 exports.getEnvVariables = () => {
   let result = {
     MAIL_HOST: 'smtp.gmail.com',
@@ -18,3 +19,6 @@ exports.getEnvVariables = () => {
 
   return result
 }
+
+// An invalid email address to be used in tests
+exports.INVALID_EMAIL = 'notanemail@gmail.com'

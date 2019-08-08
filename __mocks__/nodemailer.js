@@ -1,10 +1,9 @@
 const nodemailer = jest.genMockFromModule('nodemailer')
+const TestUtilities = require('../__tests__/utils')
 
 nodemailer.createTransport = configObject => ({
   sendMail: async function (mailOptions) {
-    // Todo: remove hardcoding and place in configs, do the same in
-    // mailer mock
-    if (mailOptions.from === 'notanemail@gmail.com') {
+    if (mailOptions.from === TestUtilities.INVALID_EMAIL) {
       throw new Error('Unable to send email')
     }
 
