@@ -12,11 +12,14 @@ class Utilities {
    */
   static getFormattedHtmlEmailBody (loggedMessage) {
     try {
+      // todo: remove hardcoded value and move to config
       let template = fs
         .readFileSync(`../../templates/log-email.html`)
         .toString()
 
-      let logColor = SEVERITY_COLOR_CODE[loggedMessage.severity]
+      let logColor =
+        SEVERITY_COLOR_CODE[loggedMessage.severity] ||
+        SEVERITY_COLOR_CODE['info']
 
       return template
         .replace(LOG_TEMPLATE_PATTERNS.MESSAGE, loggedMessage.message)

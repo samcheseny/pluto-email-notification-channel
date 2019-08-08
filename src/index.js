@@ -33,18 +33,14 @@ class Channel {
     }
 
     return Mailer.sendMail(config)
-      .then(data => {
-        return {
-          notified: true,
-          data: data
-        }
-      })
-      .catch(error => {
-        return {
-          notified: false,
-          data: error
-        }
-      })
+      .then(data => ({
+        notified: true,
+        data: data
+      }))
+      .catch(error => ({
+        notified: false,
+        data: error
+      }))
   }
 
   /**
@@ -59,7 +55,7 @@ class Channel {
       }
 
       // Check if any variable is empty
-      if (process.env[property].trim() === '') {
+      if (process.env[property] === '') {
         throw new Error(
           `${property} does not have a value in the environment variables`
         )
@@ -82,7 +78,7 @@ class Channel {
       }
 
       // Check if any variable is empty
-      if (logObject[property].trim() === '') {
+      if (logObject[property] === '') {
         throw new Error(
           `${property} does not have a value in the received log object`
         )

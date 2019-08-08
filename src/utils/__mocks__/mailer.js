@@ -3,7 +3,7 @@ class Mailer {
 
   static async sendMail (config) {
     // Simulate a promise rejection
-    if (config.user === '') {
+    if (config.user === 'notanemail@gmail.com') {
       throw new Error('Unable to send an email')
     }
 
