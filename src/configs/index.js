@@ -1,4 +1,9 @@
 /**
+ * A list of the accepted log levels
+ */
+exports.ACCEPTED_LOG_LEVELS = ['emergency', 'error', 'warning', 'info', 'debug']
+
+/**
  * Patterns to be found in the log templates
  */
 exports.LOG_TEMPLATE_PATTERNS = {
@@ -48,3 +53,8 @@ exports.SEVERITY_COLOR_CODE = {
   info: '#4fc08d',
   debug: '#6c757d'
 }
+
+/**
+ * The path to the email template
+ */
+exports.TEMPLATE_PATH = './templates/log-email.html'

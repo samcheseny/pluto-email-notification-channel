@@ -1,5 +1,10 @@
 const fs = require('fs')
-const { LOG_TEMPLATE_PATTERNS, SEVERITY_COLOR_CODE } = require('../configs')
+const path = require('path')
+const {
+  LOG_TEMPLATE_PATTERNS,
+  SEVERITY_COLOR_CODE,
+  TEMPLATE_PATH
+} = require('../configs')
 
 class Utilities {
   /**
@@ -12,14 +17,9 @@ class Utilities {
    */
   static getFormattedHtmlEmailBody (loggedMessage) {
     try {
-      // todo: remove hardcoded value and move to config
-      let template = fs
-        .readFileSync(`../../templates/log-email.html`)
-        .toString()
+      let template = fs.readFileSync(path.resolve(TEMPLATE_PATH)).toString()
 
-      let logColor =
-        SEVERITY_COLOR_CODE[loggedMessage.severity] ||
-        SEVERITY_COLOR_CODE['info']
+      let logColor = SEVERITY_COLOR_CODE[loggedMessage.severity]
 
       return template
         .replace(LOG_TEMPLATE_PATTERNS.MESSAGE, loggedMessage.message)

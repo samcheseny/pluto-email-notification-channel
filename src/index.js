@@ -1,6 +1,7 @@
 const Mailer = require('./utils/mailer')
 const Utilities = require('./utils/utilities')
 const {
+  ACCEPTED_LOG_LEVELS,
   REQUIRED_ENV_PROPERTIES,
   REQUIRED_LOG_PROPERTIES
 } = require('./configs')
@@ -15,12 +16,13 @@ class Channel {
    * Returns the resolved promise from sending an email
    */
   static notify (loggedMessageObject) {
+    console.time('TAT')
     this.validateEnvObject()
     this.validateLogObject(loggedMessageObject)
 
     let subject = `${loggedMessageObject.severity.toUpperCase()} 
                  : ${loggedMessageObject.serverName} 
-                 - ${loggedMessageObject.timestamp}`
+                 - (${loggedMessageObject.timestamp})`
 
     let config = {
       host: process.env.MAIL_HOST,
@@ -32,6 +34,7 @@ class Channel {
       subject
     }
 
+    console.timeEnd('TAT')
     return Mailer.sendMail(config)
       .then(data => ({
         notified: true,
@@ -81,6 +84,18 @@ class Channel {
       if (logObject[property] === '') {
         throw new Error(
           `${property} does not have a value in the received log object`
+        )
+      }
+
+      // Check if valid severity has been sent
+      if (
+        property === 'severity' &&
+        !ACCEPTED_LOG_LEVELS.includes(logObject[property])
+      ) {
+        throw new Error(
+          `${
+            logObject[property]
+          } is not a valid log level (${ACCEPTED_LOG_LEVELS.join(',')})`
         )
       }
     })
