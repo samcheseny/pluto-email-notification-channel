@@ -16,7 +16,6 @@ class Channel {
    * Returns the resolved promise from sending an email
    */
   static notify (loggedMessageObject) {
-    console.time('TAT')
     this.validateEnvObject()
     this.validateLogObject(loggedMessageObject)
 
@@ -34,7 +33,6 @@ class Channel {
       subject
     }
 
-    console.timeEnd('TAT')
     return Mailer.sendMail(config)
       .then(data => ({
         notified: true,

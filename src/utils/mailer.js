@@ -11,8 +11,8 @@ class Mailer {
     // Create a transport object
     const transporter = nodemailer.createTransport({
       host: config.host,
-      port: 465,
-      secure: true,
+      port: 587,
+      secure: false,
       auth: {
         user: config.user,
         pass: config.pass

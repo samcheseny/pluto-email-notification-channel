@@ -25,6 +25,10 @@
     ],
     "verbose": true
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samcheseny/pluto-email-notification-channel.git"
+  },
   "keywords": [
     "pluto",
     "email",
@@ -34,8 +38,11 @@
   ],
   "author": "Samuel Ndara",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samcheseny/pluto-email-notification-channel/issues"
+  },
+  "homepage": "https://github.com/samcheseny/pluto-email-notification-channel#readme",
   "devDependencies": {
-    "chai": "^4.2.0",
     "eslint": "^6.1.0",
     "jest": "^24.8.0"
   },
